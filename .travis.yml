@@ -18,9 +18,9 @@ before_install:
 install:
   - cd /tmp && git clone https://github.com/XJ-GTD/GTD2.git
 before_script:
-  - cd /tmp && tar -czvf github.clone.tar.gz /tmp/GTD2 && split -b 10M -d -a 1 github.clone.tar.gz github.clone.tar.gz.
+  - cd /tmp && tar -czvf github.clone.tar.gz /tmp/GTD2 && split -b 10M -d -a 1 github.clone.tar.gz multi.github.clone.tar.gz.
 script:
-  - sshpass -e scp -v -C -o stricthostkeychecking=no /tmp/github.clone.tar.gz.* root@www.guobaa.com:/tmp/
+  - sshpass -e scp -v -C -o stricthostkeychecking=no /tmp/multi.github.clone.tar.gz.* root@www.guobaa.com:/tmp/
 env:
   global:
   - LANG=zh_CN.UTF-8
