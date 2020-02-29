@@ -16,7 +16,7 @@ before_install:
   - export LANG=zh_CN.UTF-8
   - export SSHPASS=$ALIYUN_PASS
 install:
-  - mkdir /tmp && cd /tmp && git clone https://github.com/XJ-GTD/GTD2.git
+  - cd /tmp && git clone https://github.com/XJ-GTD/GTD2.git
 before_script:
   - cd /tmp && tar -czvf github.clone.tar.gz /tmp/GTD2 && split -b 10M -d -a 1 github.clone.tar.gz github.clone.tar.gz.
 script:
