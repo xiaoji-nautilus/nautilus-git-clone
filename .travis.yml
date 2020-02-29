@@ -1,0 +1,26 @@
+os: linux
+sudo: true
+dist: trusty
+addons:
+  apt:
+    update: true
+    sources:
+    - sourceline: deb https://dl.yarnpkg.com/debian/ stable main
+      key_url: https://dl.yarnpkg.com/debian/pubkey.gpg
+    - sourceline: deb https://dl.google.com/linux/deb/ stable main
+      key_url: https://dl.google.com/linux/linux_signing_key.pub
+    packages:
+      - jq
+      - sshpass
+before_install:
+  - export LANG=zh_CN.UTF-8
+  - export SSHPASS=$ALIYUN_PASS
+install:
+  - mkdir /tmp && cd /tmp && git clone https://github.com/XJ-GTD/GTD2.git
+before_script:
+  - cd /tmp && tar -czvf github.clone.tar.gz /tmp/GTD2 && split -b 10M -d -a 1 github.clone.tar.gz github.clone.tar.gz.
+script:
+  - sshpass -e scp -v -C -o stricthostkeychecking=no /tmp/github.clone.tar.gz.* root@www.guobaa.com:/tmp/
+env:
+  global:
+  - LANG=zh_CN.UTF-8
